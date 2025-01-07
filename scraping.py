@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-import LLM
+import llm
 
 edge_options = webdriver.EdgeOptions()
 edge_options.add_experimental_option("detach", True)
@@ -32,7 +32,7 @@ class CVReader:
         # Quiza haya que recategorizar las categorias para que no haya duplicados con distintos nombres, mediante otra
         # llamada a OpenAI que identifique sinónimos
 
-        return LLM.classify(text)
+        return llm.classify(text)
 
     def read_linkedin(self):
         """Classifies the data read from the user LinkedIn profile"""
