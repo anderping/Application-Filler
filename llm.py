@@ -10,7 +10,7 @@ openai_key = str(os.getenv("OPENAI_API_KEY"))
 
 def classify(text):
     """Receives an input text and classifies it per desired types. For example, it gets a full job
-    experience and in classifies the text splitting it into location, dates, description, etc"""
+    experience and in classifies the text splitting it into location, dates, description, etc."""
 
     client = OpenAI(api_key=openai_key)
 
@@ -41,42 +41,71 @@ def classify(text):
              3. Always use double quotes in the JSON string, don't use single quotes.
                              
              4. In the JSON string 'category' is the category or heading of each section of the CV, which could 
-             have one of the following names (or synonyms to these: User Description, Employment, Education, Skills, Interests 
-             and Achievements.
+             have one of the following names (or synonyms to these): Name, Location, Contact, External Links, User 
+             Description, Languages, Employment, Education, Skills, Interests and Achievements.
              
-             5. Always include a new instance of category, even if it's repeated.
+             5. 'Name' is the name of the user, which normally is used as a heading in the CV.
              
-             6. If you can't find information from the text regarding any of the keys in any of the 'category' 
-             values then always fill it with 'NaN'.
+             6. 'Location' is the location of the user, which is normally accompanied by other user data, such as 
+             'Contact'. Don't put any of this data in the 'location' key, place it entirely in 'description'. 
+             Only include the location itself.
              
-             7. In case of 'User Description', 'Skills' and 'Interests' only fill the 'description' key with the 
-             correspondant information, fill the rest of the keys with NaN.
+             7. 'Contact' is the contact info of the user. Could be a telephone number or an email.
+             
+             8. 'External Links' shall include links to sites such as GitHub, Linkedin or other portfolio-like sites. 
+             Is is normally included close to other user data, such as 'Location' and 'Contact'.
+             
+             9. 'Languages' are the languages the user knows, which could be specified in an independent section or in 
+             the 'Skills' section. Place this info entirely in the 'description' key.
+             
+             10. Always include a new instance of category, even if it's repeated.
+             
+             11. If you can't find information from the text regarding any of the keys in any of the 'category' 
+             values then always fill it out with 'NaN'.
+             
+             12. In case of 'Name', 'Location', 'Contact', 'External Links', 'User Description', 'Languages', 'Skills' 
+             and 'Interests' only fill out 0the 'description' key with the correspondant information, fill out the 
+             rest of the keys with NaN.
 
-             8. All lists in the values must be of the same length, hence don't leave any blank spaces, in that 
-             case fill with 'NaN'.
+             13. All lists in the values must be of the same length, hence don't leave any blank spaces, in that case 
+             fill out with 'NaN'.
              
-             9. Never create lists inside the lists indicated in the JSON string for the values.""",
+             14. Never create lists inside the lists indicated in the JSON string for the values.""",
              },
             {"role": "user", "content": text}
         ]
     )
 
-    #                  , in which case always only use one of the
-    #                  following indicated names, for example, if "Other Employment" is used in the CV, include it as
-    #                  "Professional Experience")
+    # TODO 1: Ver si hace falta incluir el "Titular" en el Data Frame
 
-    content = completion.choices[0].message.content  # Esto se genera como un literal json string, no vale como un JSON normal
-    data = json.loads(content)  # Para transformarlo en diccionario
+    # TODO 2: Para Location se rellena la columna location cuando debería ir en description. Puede necesitar corrección
+    #  post
 
-    return pd.DataFrame(data)
+    # TODO 3: Ver si ajustar Temperature y otros parámetros en el modelo
+
+    content = completion.choices[0].message.content  # It is generated as a literal json string
+    data = json.loads(content)  # To transform into a dictionary
+
+    try:
+        return pd.DataFrame(data)
+    except ValueError:
+        print("Language model may fail to generate a proper Data Frame in some runs. Please re-upload your CV and try "
+              "again.")
 
 
-def generate_synonyms(self):
+# def generate_industry_choices(cv_df):
+#     cv_df[cv_df["category"] == "Employment"]["company/institute"]
+#
+#
+#     return
+
+
+def generate_synonyms():
 
     return
 
 
-def write_cover_letter(self):
+def write_cover_letter():
 
     return
 
@@ -85,3 +114,9 @@ def write_cover_letter(self):
 #     pipe = pipeline("token-classification", model="jjzha/jobbert_knowledge_extraction")
 
 #     pipe("TEXTO A CLASIFICAR")
+
+
+
+    #                  , in which case always only use one of the
+    #                  following indicated names, for example, if "Other Employment" is used in the CV, include it as
+    #                  "Professional Experience")
