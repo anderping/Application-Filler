@@ -1,13 +1,13 @@
 "Application Filler" is a tool made out of the weariness of having to fill out manually individual profile sites to apply for different jobs.
 
-Its purpose is to save all those troubles by just having to upload your CV or LinkedIn profile URL and letting the program make the rest of the work.
+Its purpose is to save all those troubles by just having to upload your CV in PDF format or LinkedIn profile URL and letting the program make the rest of the work.
 
 The program workflow is as follows:
 
     FIRST DRAFT
     1. The user uploads his CV in PDF format or indicates his LinkedIn profile URL.
     2. OpenAi gpt-4o-mini LLM reads it, classifies all the data, which is then saved into a Data Frame.
-    3. The user is given the option of editing the data afterwards.
+    3. The user is given the option to edit the data afterwards.
     4. The user is asked for his job preferences.
 
     TBD
