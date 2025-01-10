@@ -18,7 +18,7 @@ def classify(text):
         model="gpt-4o-mini",
         messages=[
             {"role": "system",
-             "temperature": 0,
+             # "temperature": 0,
              "content":  """You are a machine for word type classification that receives a text extracted from a CV 
              as input and retrieves the following pieces of data: category, name, role, location, date and 
              description from it following the next set of rules:

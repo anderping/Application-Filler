@@ -49,7 +49,7 @@ class WebScraper:
 
         # TODO: Read job_specs and put it in the search bar in linkedin
 
-        print("A TOPE")
+        print("HASTA AQUÍ HEMOS LLEGAO")
 
         self.driver.get("webpage")
 
