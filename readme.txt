@@ -1,8 +1,6 @@
-"Application Filler" is a tool made out of the weariness of having to fill out manually individual profile sites to
-apply for different jobs.
+"Application Filler" is a tool made out of the weariness of having to fill out manually individual profile sites to apply for different jobs.
 
-Its purpose is to save all those troubles by just having to upload your CV or LinkedIn profile URL and letting the
-program make the rest of the work.
+Its purpose is to save all those troubles by just having to upload your CV or LinkedIn profile URL and letting the program make the rest of the work.
 
 The program workflow is as follows:
 
