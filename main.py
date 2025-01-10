@@ -5,7 +5,7 @@ import re
 # import llm
 
 
-# TODO 1: Falta añadir la opción de que se suba el CV mediante perfil de Linkedin
+# TODO 1: Falta añadir la opción de que se suba el CV mediante perfil de LinkedIn
 #  (si no es primer uso se muestra último CV y se ofrece actualizar)
 #  (se ofrece iniciar nueva instancia si la búsqueda es para un puesto totalmente diferente)
 
@@ -53,6 +53,7 @@ def save_job_specs(location, role, contract, exp_level, job_type):
 
 
 def search_jobs():
+    """Function to execute the job search."""
     global offers_cv, job_specs
 
     web_scraper = scraping.WebScraper()

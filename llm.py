@@ -53,7 +53,7 @@ def classify(text):
              
              7. 'Contact' is the contact info of the user. Could be a telephone number or an email.
              
-             8. 'External Links' shall include links to sites such as GitHub, Linkedin or other portfolio-like sites. 
+             8. 'External Links' shall include links to sites such as GitHub, LinkedIn or other portfolio-like sites. 
              Is is normally included close to other user data, such as 'Location' and 'Contact'. If no links are 
              present, fill out every key with NaN.
              
