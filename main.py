@@ -35,7 +35,7 @@ def edit_dataframe(edited_data):
     updated_df = pd.DataFrame(edited_data)
     cv_df.update(updated_df)
 
-    return "Data Saved Successfully!"
+    return "CV Data Saved Successfully!"
 
 
 def save_job_specs(location, role, contract, exp_level, job_type):
@@ -52,8 +52,18 @@ def save_job_specs(location, role, contract, exp_level, job_type):
     return "Job Specifications Saved Successfully!"
 
 
+def search_jobs():
+    global offers_cv, job_specs
+
+    web_scraper = scraping.WebScraper()
+    offers_cv = web_scraper.retrieve_offer_data(job_specs)
+
+    return
+
+
 with gr.Blocks() as app:
     gr.Markdown("# CV Application Filler")
+    gr.Markdown("")
 
     # File upload section
 
@@ -65,11 +75,14 @@ with gr.Blocks() as app:
     with gr.Column(visible=False) as cv_section:
         gr.Markdown("_CV Read Successfully!_")
 
+        gr.Markdown("")
         gr.Markdown("## Check Your Data")
-        gr.Markdown("### Edit the data in each cell if needed and then press save")
-        gr.Markdown("### _IMPORTANT: Do not modify NaN cells!_")
+        gr.Markdown("### Edit the data in each cell if needed. You can add new rows for the Education, Employment and "
+                    "Skills categories, but don't add new categories.\nWhen finished, press save:")
         ui_df = gr.Dataframe(interactive=True,
                              col_count=(6, 'fixed'))
+
+        # TODO: Ajustar tamaño de filas para que la descripción no sea en una sóla línea
 
         # TODO 2: Se le pedirá contestar unas preguntas acerca del tipo de trabajo que busca (autorellenadas
         #  con info del CV para que el usuario compruebe y cambie algo si quiere):
@@ -83,6 +96,7 @@ with gr.Blocks() as app:
         #  solo serán utilizadas para rellenar las aplicaciones
 
         with gr.Column(render=False) as job_section:
+            gr.Markdown("")
             gr.Markdown("## Job Specifications")
             gr.Markdown("### Answer the following questions regarding the jobs you would like to apply to:")
 
@@ -116,18 +130,23 @@ with gr.Blocks() as app:
         success_message_cv.render()
 
         @gr.render(inputs=success_message_cv)
-        def render_job_section(text):
-            if len(text) > 0:
+        def render_job_section(control):
+            if len(control) > 0:
                 job_section.render()
 
-    # TODO: Ajustar tamaño de filas para que la descripción no sea en una sóla línea
+        @gr.render(inputs=success_message_job)
+        def make_last_question(control):
+            if control is not None:
+                global jobs_to_apply
+
+                gr.Markdown("## One last question:")
+                jobs_to_apply = gr.Number(label="How many offers would you like to apply to?",
+                                          precision=0)
+
+                search_jobs_button = gr.Button("Start Searching for Jobs!")
+                search_jobs_button.click(search_jobs)
 
     ui_file.change(upload_cv, inputs=ui_file, outputs=[ui_df, ui_file_path, cv_section])
-
-# TODO 3: Se genera una tabla de pandas con esa info.
-
-# TODO 4: Se pregunta cuántas ofertas se desean aplicar en la ejecución.
-
 
 # Launch Gradio App
 app.launch(share=False)

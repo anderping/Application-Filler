@@ -40,31 +40,34 @@ def classify(text):
              
              3. Always use double quotes in the JSON string, don't use single quotes.
                              
-             4. In the JSON string 'category' is the category or heading of each section of the CV, which could 
-             have one of the following names (or synonyms to these): Name, Location, Contact, External Links, User 
-             Description, Languages, Employment, Education, Skills, Interests and Achievements.
+             4. In the JSON string, 'category' is the category or heading of each section of the CV, which could 
+             have one of the following names (or similar/synonyms to these): Name, Location, Contact, External Links, 
+             User Description, Languages, Employment, Education, Skills, Interests and Achievements. Use only these as 
+             categories, do not make up any other.
              
              5. 'Name' is the name of the user, which normally is used as a heading in the CV.
              
              6. 'Location' is the location of the user, which is normally accompanied by other user data, such as 
-             'Contact'. Don't put any of this data in the 'location' key, place it entirely in 'description'. 
+             'Contact'. Don't put any of the location data in the 'location' key, place it entirely in 'description'. 
              Only include the location itself.
              
              7. 'Contact' is the contact info of the user. Could be a telephone number or an email.
              
              8. 'External Links' shall include links to sites such as GitHub, Linkedin or other portfolio-like sites. 
-             Is is normally included close to other user data, such as 'Location' and 'Contact'.
+             Is is normally included close to other user data, such as 'Location' and 'Contact'. If no links are 
+             present, fill out every key with NaN.
              
              9. 'Languages' are the languages the user knows, which could be specified in an independent section or in 
-             the 'Skills' section. Place this info entirely in the 'description' key.
+             the 'Skills' section.
              
-             10. Always include a new instance of category, even if it's repeated.
-             
+             10. For the 'Education', 'Employment' and 'Skills' categories always include a new instance in the 
+             'category' key, even if it's repeated.
+                          
              11. If you can't find information from the text regarding any of the keys in any of the 'category' 
              values then always fill it out with 'NaN'.
              
              12. In case of 'Name', 'Location', 'Contact', 'External Links', 'User Description', 'Languages', 'Skills' 
-             and 'Interests' only fill out 0the 'description' key with the correspondant information, fill out the 
+             and 'Interests' only fill out the 'description' key with the correspondant information, fill out the 
              rest of the keys with NaN.
 
              13. All lists in the values must be of the same length, hence don't leave any blank spaces, in that case 
