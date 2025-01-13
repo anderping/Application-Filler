@@ -15,3 +15,9 @@ The program workflow is as follows:
     6. The offers matching the user data and preferences are shown to the user for last verification.
     7. The program fills out the application sites.
     8. The application sites are shown to the user for revision and approval.
+
+
+Run the following before execution:
+
+    - Copy .env.example file to .env on the root folder. You can type "copy .env.example .env" if using command prompt
+    Windows or "cp .env.example .env" if using terminal Ubuntu.
