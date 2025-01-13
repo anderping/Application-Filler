@@ -19,5 +19,4 @@ The program workflow is as follows:
 
 Run the following before execution:
 
-    - Copy .env.example file to .env on the root folder. You can type "copy .env.example .env" if using command prompt
-    Windows or "cp .env.example .env" if using terminal Ubuntu.
+    - Copy .env.example file to .env on the root folder. You can type "copy .env.example .env" if using command prompt Windows or "cp .env.example .env" if using terminal Ubuntu.
