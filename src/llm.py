@@ -1,11 +1,9 @@
-from dotenv import load_dotenv
 import os
 from openai import OpenAI
 import json
 import pandas as pd
 
-load_dotenv('../.env')
-openai_key = str(os.getenv("OPENAI_API_KEY"))
+openai_key = os.getenv("OPENAI_API_KEY")
 
 
 def classify(text):
