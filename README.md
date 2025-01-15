@@ -25,25 +25,25 @@ __*WIP*__
 <br>
 
 ### Follow the steps to execute the program locally
-Copy .env.example file to .env on the root folder: 
+1. Copy .env.example file to .env on the root folder: 
 
-    # Windows command prompt
-    copy .env.example .env
+        # Windows command prompt
+        copy .env.example .env
 
-    # macOS and Linux terminal
-    cp .env.example .env
+        # macOS and Linux terminal
+        cp .env.example .env
     
-Activate virtual environment:
+2. Activate virtual environment:
+
+        # Windows command prompt
+        .venv\Scripts\activate.bat
+
+        # Windows PowerShell
+        .venv\Scripts\Activate.ps1
     
-    # Windows command prompt
-    .venv\Scripts\activate.bat
+        # macOS and Linux
+        source .venv/bin/activate
 
-    # Windows PowerShell
-    .venv\Scripts\Activate.ps1
+3. Run to execute:
 
-    # macOS and Linux
-    source .venv/bin/activate
-
-Run to execute:
-    
-    py src/main.py
+        py src/main.py
