@@ -1,3 +1,5 @@
+[Check the implementation of the app in Hugging Face Spaces](https://huggingface.co/spaces/anderping/Application-Filler)
+
 "Application Filler" is a tool made out of the weariness of having to fill out manually individual profile sites to 
 apply for different jobs.
 
@@ -25,7 +27,3 @@ Run the following before execution:
 
     - Copy .env.example file to .env on the root folder. You can type "copy .env.example .env" if using command prompt 
     Windows or "cp .env.example .env" if using terminal Ubuntu.
-
-See the implementation in Hugging Face Spaces:
-
-    https://huggingface.co/spaces/anderping/Application-Filler
