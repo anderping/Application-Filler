@@ -15,7 +15,7 @@ The program workflow is as follows:
     3. The user is given the option to edit the data afterwards.
     4. The user is asked for his job preferences.
 
-    TBD
+    WIP
 
     5. With the profile data and the job preferences the search is conducted.
     6. The offers matching the user data and preferences are shown to the user for last verification.
