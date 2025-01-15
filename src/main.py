@@ -14,7 +14,7 @@ def upload_cv(file):
     """Function to handle file upload and generate de Data Frame."""
     global cv_df
 
-    destiny_path = f"Saved CV/{re.search(r'([^\\]+)$', file).group(1)}"
+    destiny_path = f"saved CV/{re.search(r'([^/]+)$', file.replace("\\", "/")).group(1)}"
 
     with open(file.name, "rb") as origin:
         with open(destiny_path, "wb") as destiny:

@@ -4,7 +4,7 @@ from openai import OpenAI
 import json
 import pandas as pd
 
-load_dotenv('.env')
+load_dotenv('../.env')
 openai_key = str(os.getenv("OPENAI_API_KEY"))
 
 
