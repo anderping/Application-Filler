@@ -70,7 +70,10 @@ with gr.Blocks() as app:
 
     gr.Markdown("## Upload Your CV")
 
-    ui_file = gr.File(label="Upload a PDF file", file_types=[".pdf"], type='filepath')
+    # TODO: Pedir a usuario que suba su Cover Letter, si dispone de ella
+
+    ui_file = gr.File(label="Upload a PDF file. Ensure avoiding redundant information or poorly structured data to "
+                            "boost the performance of the model:", file_types=[".pdf"], type='filepath')
     ui_file_path = gr.Textbox(label="File Path", show_copy_button=True)
 
     with gr.Column(visible=False) as cv_section:
