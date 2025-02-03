@@ -3,6 +3,7 @@ import scraping
 import pandas as pd
 import re
 import ocr
+import os
 # import llm
 
 
@@ -17,6 +18,9 @@ def upload_cv(file):
 
     file_name = re.search(r'([^/]+)$', file.replace("\\", "/")).group(1)
     destiny_path = "saved CV/{}".format(file_name)
+
+    if not os.path.exists("saved CV"):
+        os.makedirs("saved CV")
 
     with open(file.name, "rb") as origin:
         with open(destiny_path, "wb") as destiny:
