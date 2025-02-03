@@ -10,7 +10,7 @@ The __program workflow__ is as follows:
 
 __*FIRST DRAFT*__
 
-1. The user uploads his CV in PDF format or indicates his LinkedIn profile URL.
+1. The user uploads his CV in PDF or image (.png or .jpg) format or (WIP) indicates his LinkedIn profile URL. The image is read through OCR.
 2. OpenAi gpt-4o-mini LLM reads it, classifies all the data, which is then saved into a Data Frame.
 3. The user is given the option to edit the data afterwards.
 4. The user is asked for his job preferences.
