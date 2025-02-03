@@ -2,6 +2,7 @@ import gradio as gr
 import scraping
 import pandas as pd
 import re
+import ocr
 # import llm
 
 
@@ -14,14 +15,19 @@ def upload_cv(file):
     """Function to handle file upload and generate de Data Frame."""
     global cv_df
 
-    destiny_path = "saved CV/{}".format(re.search(r'([^/]+)$', file.replace("\\", "/")).group(1))
+    file_name = re.search(r'([^/]+)$', file.replace("\\", "/")).group(1)
+    destiny_path = "saved CV/{}".format(file_name)
 
     with open(file.name, "rb") as origin:
         with open(destiny_path, "wb") as destiny:
             destiny.write(origin.read())
 
-    reader = scraping.CVReader(destiny_path)
-    cv_df = reader.read_pdf()
+    if file_name.endswith(".pdf"):
+        reader = scraping.CVReader(destiny_path)
+        cv_df = reader.read_pdf()
+
+    else:
+        cv_df = ocr.read_image(destiny_path)
 
     cv_section = gr.Column(visible=True)
 
@@ -72,8 +78,10 @@ with gr.Blocks() as app:
 
     # TODO: Pedir a usuario que suba su Cover Letter, si dispone de ella
 
-    ui_file = gr.File(label="Upload a PDF file. Ensure avoiding redundant information or poorly structured data to "
-                            "boost the performance of the model:", file_types=[".pdf"], type='filepath')
+    ui_file = gr.File(label="Upload a PDF, PNG or JPG file. Ensure avoiding redundant information or poorly structured "
+                            "data to boost the performance of the model:",
+                      file_types=[".pdf", ".png", ".jpg"],
+                      type='filepath')
     ui_file_path = gr.Textbox(label="File Path", show_copy_button=True)
 
     with gr.Column(visible=False) as cv_section:
